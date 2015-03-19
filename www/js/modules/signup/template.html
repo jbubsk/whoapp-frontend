@@ -1,0 +1,33 @@
+<ion-view view-title="model.username">
+    <ion-content id="signup" class="padding">
+        <div class="page-title">
+            <span translate="REG.title"></span>
+        </div>
+        <div class="signup-form form list">
+            <j-input-title i18n="REG.login" error="error.username"></j-input-title>
+            <div class="item item-input clear">
+                <input type="text" ng-model="model.username" maxlength="15">
+            </div>
+
+            <j-input-title i18n="REG.email" error="error.email"></j-input-title>
+            <div class="item item-input">
+                <input type="text" ng-model="model.email" ng-style="fontSize">
+            </div>
+
+            <j-input-title i18n="REG.password" error="error.password"></j-input-title>
+            <div class="item item-input">
+                <input type="password" ng-model="model.password" maxlength="25">
+            </div>
+
+            <j-input-title i18n="REG.confirm_password" error="error.confirmpassword"></j-input-title>
+            <div class="item item-input">
+                <input type="password" ng-model="model.confirmpassword" maxlength="25">
+            </div>
+
+            <div class="button-bar">
+                <a class="button button-block button-positive" ng-click="signup()" translate="REG.btn_ok"></a>
+                <a class="button button-block button-positive" ng-click="toLogin()" translate="REG.btn_cancel"></a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

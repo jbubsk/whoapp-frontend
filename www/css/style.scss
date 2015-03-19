@@ -1,0 +1,260 @@
+/********* HEADER *********/
+#container {
+  background: rgba(166, 186, 193, 0.93);
+}
+
+#header_container {
+  background: rgba(42, 168, 47, 0.83);
+  border-bottom: 1px solid rgba(37, 127, 18, 0.93);
+  height: 65px;
+  position: absolute;
+  width: 100%;
+  padding: 25px 10px 0;
+}
+
+#header_content {
+  line-height: 65px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+/********* CONTENT *********/
+
+#content {
+  position: fixed;
+  width: 90%;
+  margin: 65px 5%;
+  padding-top: 22.5px;
+}
+
+#page-host {
+  width: 100%;
+}
+
+.clear {
+  clear: both;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.error {
+  /*border-bottom: 1px solid red;*/
+}
+
+.main-error {
+  height: 50px;
+  margin-left: 35px;
+  color: red;
+  font-weight: bold;
+}
+
+.line {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: -11px;
+  width: 100%;
+}
+
+.ph-label {
+  font-size: 13px;
+  background-color: #ffffff;
+  padding: 0 3px;
+  margin-left: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.ph-label-error {
+  font-size: 13px;
+  background-color: #ffffff;
+  padding: 0 3px;
+  margin-right: 10px;
+  color: red;
+  height: 19px;
+}
+
+.login-form {
+  margin: 20px 20%;
+}
+
+.form {
+  padding-top: 30px;
+}
+
+.form .item {
+  margin-bottom: 25px;
+  border-radius: 2px;
+  padding-top: 0;
+  border-top: none;
+  height: 30px;
+  border-left: none;
+  border-right: none;
+}
+
+.input-error-msg {
+  width: 150px;
+  margin-bottom: -10px;
+}
+
+.input-error-msg p {
+  color: red;
+  font-size: 11px;
+}
+
+.signup-form {
+  margin-top: 50px;
+}
+
+.form .input-label {
+  padding: 0;
+}
+
+.input-labels-wrapper {
+  margin: -6px 5px 0;
+}
+
+.page-title {
+  margin-left: 35px;
+  padding-top: 20px;
+  font-size: 30px;
+  font-weight: 200;
+  height: 50px;
+}
+
+#signup .page-title {
+  font-size: 27px;
+}
+
+#middle-text {
+  text-align: center;
+  font-size: 15px;
+  font-weight: 200;
+}
+
+.item-select {
+  height: 47px;
+}
+
+.item-select select {
+  position: static;
+  padding-left: 10px;
+  direction: ltr;
+}
+
+.item-input input[type="date"] {
+  padding-top: 7px;
+}
+
+.card .month {
+  font-weight: 300;
+  box-shadow: none;
+  border: 1px solid rgb(223, 221, 221);
+  padding: 2px 5px 2px 2px;
+}
+
+.month-name {
+  background: rgba(245, 246, 249, 0.71);
+  padding: 10px 5px;
+  min-width: 80px;
+}
+
+.year a {
+  font-weight: 600;
+}
+
+.page-title-top {
+  margin: 10px 0 15px 15px;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.title-total-amount {
+  text-align: right;
+}
+
+.title-total-amount div:first-child {
+  margin-right: 15px;
+  font-weight: 400;
+}
+
+.title-total-amount div:last-child {
+  margin-right: 15px;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.item-content {
+  padding: 6px 9px 6px 6px !important;
+}
+
+.padding {
+  padding: 10px 0;
+}
+
+.coordinates-row {
+  height: 40px;
+}
+
+.location {
+  width: 100%;
+}
+
+.location-row {
+  width: 100%;
+}
+
+.location-row img {
+}
+
+.xy-title {
+  min-width: 120px;
+  font-size: 13px;
+  text-decoration: underline;
+  display: inline-block;
+  margin-right: 5px;
+  padding-top: 8px;
+}
+
+.xy-value {
+  color: red;
+  font-size: 14px;
+}
+
+.button-block {
+  position: relative;
+  width: 100%;
+}
+
+.center-block {
+  width: 150px;
+  font-size: 13px;
+  line-height: 20px;
+  left: 50%;
+  position: absolute;
+}
+
+.center-block button {
+  margin-left: -75px;
+  width: 100%;
+}
+
+.person-location-row {
+  height: 80px;
+  margin-left: 20px;
+}
+
+.username {
+  color: #000000;
+  font-weight: bold;
+}
+
+.btn-menu {
+  background: rgba(7, 105, 11, 0.83);
+  color: white;
+}
