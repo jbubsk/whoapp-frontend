@@ -14,7 +14,8 @@ module.exports = {
     dest: {
         app: 'application.js',
         lib: 'libraries.js',
-        style: 'style.css'
+        style: 'style.css',
+        lib_style: 'lib-style.css'
     },
 
     dist: distRoot,

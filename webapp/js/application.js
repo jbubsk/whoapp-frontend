@@ -1,10 +1,9 @@
-var Login = require('./components/Login');
+var Layout = require('./components/Layout');
 
 Whoapp = {
     run: function () {
         React.render(
-            <Login/>,
-            //document.getElementById('app')
+            <Layout/>,
             document.body
         );
     }

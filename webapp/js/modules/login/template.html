@@ -1,25 +1,18 @@
 <div class="padding">
-    <div class="page-title">
-        <span translate="LOGIN.title"></span>
-    </div>
-    <div class="login-form form list">
-        <div class="main-error" ng-bind="main_error"></div>
-
-        <j-input-title i18n="LOGIN.username" error="error.username"></j-input-title>
-        <label class="item item-input" ng-class="error.username ? 'error' : ''">
-            <input type="text" class="form-control" ng-model="model.username" maxlength="15">
-        </label>
-
-        <j-input-title i18n="LOGIN.password" error="error.password"></j-input-title>
-        <label class="item item-input" ng-class="error.password ? 'error' : ''">
-            <input type="password" class="form-control" ng-model="model.password" maxlength="25" ng-enter="login()">
-        </label>
-
-        <div class="button-block">
-            <button type="button" class="btn btn-primary" ng-click="login()"
-                    translate="LOGIN.btn_login"></button>
-            <button type="button" class="btn btn-primary" ng-click="toSignup()"
-                    translate="LOGIN.btn_signup"></button>
+        <div class="page-title">
+            <span translate="LOGIN.title"></span>
         </div>
-    </div>
+        <div class="login-form form list">
+            <div class="main-error" ng-bind="main_error"></div>
+            <label class="item item-input" ng-class="error.username ? 'error' : ''">
+                <input type="text" class="form-control" ng-model="model.username" maxlength="15">
+            </label>
+            <label class="item item-input" ng-class="error.password ? 'error' : ''">
+                <input type="password" class="form-control" ng-model="model.password" maxlength="25" ng-enter="login()">
+            </label>
+            <div class="button-block">
+                <button type="button" class="btn btn-primary" translate="LOGIN.btn_login"></button>
+                <button type="button" class="btn btn-primary" translate="LOGIN.btn_signup"></button>
+            </div>
+        </div>
 </div>

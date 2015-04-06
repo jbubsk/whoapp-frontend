@@ -1,3 +1,31 @@
+var ajax = require('./ajax');
+var AuthService = {
+    logIn: function (model) {
+        return $http.post('/login', model)
+            .success(function (data, status, headers, config) {
+                Session.create(data.username, data.userRole);
+            })
+            .error(function (data, status, headers, config) {
+                Session.destroy();
+            });
+    },
+    logOut: function () {
+        return $http.get('/logout')
+            .success(function (data, status, headers, config) {
+                Session.destroy();
+            })
+            .error(function (data, status, headers, config) {
+
+            });
+    },
+    signUp: function (data) {
+        return $http.post('/register', data);
+    },
+    isAuthenticated: function () {
+        return Session.isAuthenticated();
+    }
+};
+
 angular.module('application')
 
     .factory('Session', function ($browser) {
@@ -65,3 +93,5 @@ angular.module('application')
             }
         }
     });
+
+module.exports = AuthService;

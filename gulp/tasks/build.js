@@ -26,6 +26,13 @@ gulp.task('build-js-sources', function () {
 });
 
 /**** Stiles build ****/
+gulp.task('build-styles-libraries', function (done) {
+    gulp.src([paths.lib + 'bootstrap/dist/css/bootstrap.min.css',
+              paths.lib + 'bootstrap/dist/css/bootstrap-theme.min.css'])
+        .pipe(concat(paths.dest.lib_style))
+        .pipe(gulp.dest(paths.dist))
+        .on('end', done);
+});
 
 gulp.task('build-styles', function (done) {
     gulp.src(paths.src.scss)
@@ -42,7 +49,7 @@ gulp.task('build-styles', function (done) {
 gulp.task('build', function (callback) {
     return runSequence(
         'clean-dev',
-        ['build-js-sources', 'build-js-libraries', 'build-styles'],
+        ['build-js-sources', 'build-js-libraries', 'build-styles-libraries', 'build-styles'],
         callback
     );
 });
