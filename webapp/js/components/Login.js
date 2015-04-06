@@ -1,4 +1,8 @@
+var AuthService = require('../services/authentication');
 var Login = React.createClass({
+    onClick: function () {
+        AuthService.logIn();
+    },
     render: function () {
         return (
             <div className="padding">
