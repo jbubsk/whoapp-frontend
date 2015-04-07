@@ -18,6 +18,8 @@
     "gulp-jshint": "^1.9.0",
     "gulp-plumber": "^0.6.6",
     "gulp-sass": "^0.7.1",
+    "react": "^0.13.1",
+    "react-router": "^0.13.2",
     "reactify": "^1.1.0",
     "require-dir": "^0.1.0",
     "run-sequence": "^1.0.2",

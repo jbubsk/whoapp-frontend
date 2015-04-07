@@ -11,7 +11,8 @@ var gulp = require('gulp'),
 
 gulp.task('build-js-libraries', function () {
     return gulp.src([
-        paths.lib + 'react/react.js'
+        paths.lib_bower + 'jquery/dist/jquery.min.js',
+        paths.lib_node + 'react/dist/react.js'
     ])
         .pipe(concat(paths.dest.lib))
         .pipe(gulp.dest(paths.dist));
@@ -27,8 +28,8 @@ gulp.task('build-js-sources', function () {
 
 /**** Stiles build ****/
 gulp.task('build-styles-libraries', function (done) {
-    gulp.src([paths.lib + 'bootstrap/dist/css/bootstrap.min.css',
-              paths.lib + 'bootstrap/dist/css/bootstrap-theme.min.css'])
+    gulp.src([paths.lib_bower + 'bootstrap/dist/css/bootstrap.min.css',
+              paths.lib_node + 'bootstrap/dist/css/bootstrap-theme.min.css'])
         .pipe(concat(paths.dest.lib_style))
         .pipe(gulp.dest(paths.dist))
         .on('end', done);

@@ -1,4 +1,5 @@
-var ajax = require('./ajax');
+var ajax = require('./../common/ajax'),
+    Session = require('./session');
 
 var AuthService = {
 

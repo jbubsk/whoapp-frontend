@@ -1,10 +1,7 @@
-var Layout = require('./components/Layout');
+var App = require('./components/App');
 
-Whoapp = {
+whoapp = {
     run: function () {
-        React.render(
-            <Layout/>,
-            document.body
-        );
+        App.run();
     }
 };

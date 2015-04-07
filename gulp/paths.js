@@ -24,7 +24,8 @@ module.exports = {
     dist_styles: distRoot,
     dist_img: distRoot + 'img/',
 
-    lib: './bower_components/',
+    lib_bower: './bower_components/',
+    lib_node: './node_modules/',
 
     dist_all: [
         distRoot + 'dist/',

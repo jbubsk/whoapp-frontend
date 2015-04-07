@@ -31,6 +31,14 @@ $device-width: 320px;
 
 /********* CONTENT *********/
 
+.page-title {
+  margin-left: 35px;
+  padding-top: 20px;
+  font-size: 30px;
+  font-weight: 200;
+  height: 50px;
+}
+
 #page-host {
   width: 100%;
 }
@@ -51,7 +59,8 @@ $device-width: 320px;
   position: fixed;
   width: 100%;
   height: 100%;
-  left: 100 - $device-width;
+//  left: 100 - $device-width;
+  left: 0 - $device-width;
   top: 0;
 }
 
