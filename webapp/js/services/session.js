@@ -4,19 +4,19 @@ var session = {},
     Session;
 
 Session = {
-    create: function (username, userRole) {
+    create: function(username, userRole) {
         session.username = username;
         session.authenticated = true;
         setCookie(cookieAuthStatus, '1');
         setCookie(cookieUserName, username);
     },
-    destroy: function () {
+    destroy: function() {
         session.username = null;
         session.authenticated = false;
         deleteCookie(cookieAuthStatus);
         deleteCookie(cookieUserName);
     },
-    initialize: function () {
+    initialize: function() {
         var cookie = document.cookie;
 
         if (cookie.length > 0) {
@@ -24,10 +24,10 @@ Session = {
             session.authenticated = !!getCookie(cookieAuthStatus);
         }
     },
-    isAuthenticated: function () {
+    isAuthenticated: function() {
         return session.authenticated;
     },
-    getUsername: function () {
+    getUsername: function() {
         return session.username;
     }
 };

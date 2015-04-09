@@ -3,7 +3,7 @@ var React = require('react'),
     Form;
 
 Form = React.createClass({
-    authClickHandler: function () {
+    _authClickHandler: function () {
         AuthService.login({
                 username: React.findDOMNode(this.refs.username).value.trim(),
                 password: React.findDOMNode(this.refs.password).value.trim()
@@ -27,7 +27,7 @@ Form = React.createClass({
                     placeholder="Пароль" ref="password"/>
 
                 <div className="button-block login-btn">
-                    <button type="button" className="btn btn-link" onClick={this.authClickHandler}>Войти</button>
+                    <button type="button" className="btn btn-link" onClick={this._authClickHandler}>Войти</button>
                 </div>
                 <div className="button-block bottom">
                     <button type="button" className="btn btn-link">Зарегистрироваться</button>

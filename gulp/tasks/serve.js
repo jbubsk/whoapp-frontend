@@ -54,7 +54,6 @@ gulp.task('phonegap-serve', ['build'], function (done) {
     sh.exec('phonegap serve', {async: true});
     gulp.watch(paths.src.js, ['build-js-sources']);
     gulp.watch(paths.src.scss, ['build-styles']);
-    //gulp.watch(paths.src + '/**/*.html', ['copy-scripts']);
     done();
 });
 

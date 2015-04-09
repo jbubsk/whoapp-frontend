@@ -8,7 +8,7 @@ module.exports = {
         html: ['./index.html'],
         scss: appRoot + 'styles/**/*.scss',
         style: 'styles/',
-        img: 'img'
+        img: appRoot + 'img/**/*.*'
     },
 
     dest: {
@@ -22,7 +22,7 @@ module.exports = {
     dist_js: distRoot,
     dist_js_lib: distRoot,
     dist_styles: distRoot,
-    dist_img: distRoot + 'img/',
+    dist_img: './www/img/',
 
     lib_bower: './bower_components/',
     lib_node: './node_modules/',

@@ -3,17 +3,17 @@ var ajax = require('./../common/ajax'),
 
 var AuthService = {
 
-    login: function login(model, successCallback, errorCallback) {
+    login: function(model, successCallback, errorCallback) {
         ajax.send({
             url: '/login',
             method: 'post',
             data: model,
             publicApi: true,
-            success: function (data) {
+            success: function(data) {
                 Session.create(data.username, data.userRole);
                 successCallback();
             },
-            error: function (error) {
+            error: function(error) {
                 console.error("Response text: " + error.responseText + "Status: " + error.status + "\nStatus text: " + error.statusText);
                 if (errorCallback) {
                     errorCallback();
@@ -22,17 +22,17 @@ var AuthService = {
         });
     },
 
-    logout: function logout(successCallback, errorCallback) {
+    logout: function(successCallback, errorCallback) {
         ajax.send({
             url: '/logout',
             publicApi: true,
-            success: function () {
+            success: function() {
                 Session.destroy();
                 if (successCallback) {
                     successCallback();
                 }
             },
-            error: function (error) {
+            error: function(error) {
                 console.error("Response text: " + error.responseText + "Status: " + error.status + "\nStatus text: " + error.statusText);
             }
         });

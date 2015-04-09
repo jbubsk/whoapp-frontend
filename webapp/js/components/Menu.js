@@ -6,9 +6,13 @@ var React = require('react'),
 Menu = React.createClass({
     render: function () {
         return (
-            <div className="menu">
-                <Link to="settings">Настройки</Link>
-                <Link to="logout">Выйти</Link>
+            <div id="menu">
+                <div>
+                    <Link to="settings">Настройки</Link>
+                </div>
+                <div>
+                    <Link to="logout">Выйти</Link>
+                </div>
             </div>
         )
     }

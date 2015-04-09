@@ -1,8 +1,14 @@
 @media screen and (min-device-width: 320px) {
+  #menu {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(4, 6, 70, 0.73); }
   #content {
     position: fixed;
-    width: 300px;
-    margin: 65px 10px; } }
+    width: 100%;
+    height: 100%;
+    background: white; } }
 
 /********* HEADER *********/
 #container {
@@ -19,8 +25,15 @@
 #header_content {
   line-height: 65px;
   margin: 0 auto;
-  text-align: center;
   color: white; }
+
+div.menu-icon {
+  margin-left: 15px;
+  width: 24px;
+  height: 24px; }
+  div.menu-icon img {
+    width: 24px;
+    height: 24px; }
 
 /********* CONTENT *********/
 .page-title {
@@ -41,13 +54,6 @@
 
 .fr {
   float: right; }
-
-.menu {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: -320px;
-  top: 0; }
 
 .main-error {
   height: 50px;

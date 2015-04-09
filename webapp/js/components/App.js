@@ -11,20 +11,31 @@ var React = require('react'),
     Login = require('../components/login/Login'),
     Logout = require('../components/Logout'),
     Settings = require('../components/Settings'),
-    Header = require('../components/Header'),
-    Menu = require('../components/Menu');
+    Menu = require('../components/Menu'),
+    PageContent = require('../components/land/PageContent');
 
 App = React.createClass({
+    getInitialState: function () {
+        return {
+            isMenuOpened: true
+        }
+    },
+    _onMenuClick: function () {
+        var isMenuOpened = !this.state.isMenuOpened;
+
+        this.setState({
+            isMenuOpened: isMenuOpened
+        });
+    },
+
     render: function () {
         return (
             <div id="container">
-                <Header/>
-                <div id="content">
-                    <div id="page_host">
-                        <RouteHandler/>
-                    </div>
-                </div>
                 <Menu/>
+                <PageContent
+                    onMenuClick={this._onMenuClick}
+                    isMenuOpened={this.state.isMenuOpened}/>
+                <div className="clear"></div>
             </div>
         )
     }
