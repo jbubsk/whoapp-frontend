@@ -9,11 +9,13 @@ Header = React.createClass({
 
     render: function () {
         return (
-            <div id="#header_container">
-                <div id="header_content">
-                    <div className="menu-icon">
-                        <img src="img/menu-24-64.png" onClick={this._handleMenuClick}/>
+            <div id="header-container">
+                <div id="header-content">
+                    <div className="menu-icon needsclick fl">
+                        <img src="img/menu-32.png" onClick={this._handleMenuClick}/>
                     </div>
+                    <div className="header-title fl"></div>
+                    <div className="clear"></div>
                 </div>
             </div>
         )

@@ -8,8 +8,8 @@ Form = React.createClass({
                 username: React.findDOMNode(this.refs.username).value.trim(),
                 password: React.findDOMNode(this.refs.password).value.trim()
             },
-            function (result) {
-                alert('Authentication is successful');
+            function () {
+                location.hash = 'home';
             },
             function (error) {
 

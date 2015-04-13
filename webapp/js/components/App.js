@@ -3,6 +3,7 @@ var React = require('react'),
     Route = Router.Route,
     RouteHandler = Router.RouteHandler,
     DefaultRoute = Router.DefaultRoute,
+    Session = require('../services/session'),
     routes,
     App,
 
@@ -10,9 +11,10 @@ var React = require('react'),
 
     Login = require('../components/login/Login'),
     Logout = require('../components/Logout'),
+    Home = require('../components/Home'),
     Settings = require('../components/Settings'),
-    Menu = require('../components/Menu'),
-    PageContent = require('../components/land/PageContent');
+    MenuContent = require('../components/MenuContent'),
+    PageContent = require('../components/PageContent');
 
 App = React.createClass({
     getInitialState: function () {
@@ -20,6 +22,7 @@ App = React.createClass({
             isMenuOpened: true
         }
     },
+
     _onMenuClick: function () {
         var isMenuOpened = !this.state.isMenuOpened;
 
@@ -31,27 +34,30 @@ App = React.createClass({
     render: function () {
         return (
             <div id="container">
-                <Menu/>
+                <MenuContent
+                    onItemClick={this._onMenuClick}/>
                 <PageContent
                     onMenuClick={this._onMenuClick}
                     isMenuOpened={this.state.isMenuOpened}/>
-                <div className="clear"></div>
+                <div className="clear"/>
             </div>
         )
     }
 });
 
 routes = (
-    <Route name="app" path="/" handler={App}>
+    <Route handler={App}>
         <Route name="login" handler={Login}/>
         <Route name="logout" handler={Logout}/>
         <Route name="settings" handler={Settings}/>
+        <Route name="home" handler={Home}/>
         <DefaultRoute handler={Login}/>
     </Route>
 );
 
 module.exports = {
     run: function () {
+        Session.initialize();
         Router.run(routes, function (Handler) {
             React.render(<Handler/>, document.body)
         });

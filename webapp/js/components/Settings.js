@@ -1,7 +1,7 @@
-var React = require('react'),
+var ReactAuth = require('../common/ReactAuth'),
     Settings;
 
-Settings = React.createClass({
+Settings = ReactAuth.createClass({
     render: function () {
         return (
             <div>Настройки</div>

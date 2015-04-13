@@ -18,9 +18,16 @@ gulp.task('build-js-libraries', function() {
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('build-js-sources', function() {
+gulp.task('build-jsx', function() {
     return browserify(paths.src.app)
         .transform(reactify)
+        .bundle()
+        .pipe(source(paths.dest.app))
+        .pipe(gulp.dest(paths.dist));
+});
+
+gulp.task('build-js-pure', function() {
+    return browserify(paths.src.buildjs)
         .bundle()
         .pipe(source(paths.dest.app))
         .pipe(gulp.dest(paths.dist));
@@ -58,14 +65,14 @@ gulp.task('build-img', function(done) {
 
 gulp.task('build', function(callback) {
     return runSequence(
-        'clean-dev', ['build-js-sources', 'build-js-libraries', 'build-styles-libraries', 'build-styles', 'build-img'],
+        'clean-dev', ['build-jsx', 'build-js-libraries', 'build-styles-libraries', 'build-styles', 'build-img'],
         callback
     );
 });
 
 gulp.task('re-build', function(callback) {
     return runSequence(
-        'clean-dev', ['build-js-sources', 'build-styles'],
+        'clean-dev', ['build-jsx', 'build-styles'],
         callback
     );
 });

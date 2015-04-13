@@ -8,7 +8,7 @@ whoapp = {
 };
 
 
-},{"./components/App":198}],2:[function(require,module,exports){
+},{"./components/App":199}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -22706,6 +22706,36 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":69}],197:[function(require,module,exports){
+var React = require('react'),
+    Session = require('../services/session'),
+    Authentication = require('../services/authentication');
+
+var ReactAuth = function () {
+};
+
+ReactAuth.createClass = function (component) {
+    var C = React.createClass(component);
+
+    return React.createClass($.extend(component, {
+            statics: {
+                willTransitionTo: function (transition) {
+                    if (!Session.isAuthenticated()) {
+                        transition.redirect('/login', {}, {'nextPath': transition.path});
+                    }
+                }
+            },
+            render: function () {
+                return (
+                    React.createElement(C, null)
+                );
+            }
+        })
+    );
+};
+
+module.exports = ReactAuth;
+
+},{"../services/authentication":208,"../services/session":209,"react":196}],198:[function(require,module,exports){
 var ajax = {
 
     public_api: '/api',
@@ -22746,12 +22776,13 @@ var ajax = {
 module.exports = ajax;
 
 
-},{}],198:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 var React = require('react'),
     Router = require('react-router'),
     Route = Router.Route,
     RouteHandler = Router.RouteHandler,
     DefaultRoute = Router.DefaultRoute,
+    Session = require('../services/session'),
     routes,
     App,
 
@@ -22759,8 +22790,9 @@ var React = require('react'),
 
     Login = require('../components/login/Login'),
     Logout = require('../components/Logout'),
+    Home = require('../components/Home'),
     Settings = require('../components/Settings'),
-    Menu = require('../components/Menu'),
+    MenuContent = require('../components/MenuContent'),
     PageContent = require('../components/land/PageContent');
 
 App = React.createClass({displayName: "App",
@@ -22769,6 +22801,7 @@ App = React.createClass({displayName: "App",
             isMenuOpened: true
         }
     },
+
     _onMenuClick: function () {
         var isMenuOpened = !this.state.isMenuOpened;
 
@@ -22780,7 +22813,8 @@ App = React.createClass({displayName: "App",
     render: function () {
         return (
             React.createElement("div", {id: "container"}, 
-                React.createElement(Menu, null), 
+                React.createElement(MenuContent, {
+                    onItemClick: this._onMenuClick}), 
                 React.createElement(PageContent, {
                     onMenuClick: this._onMenuClick, 
                     isMenuOpened: this.state.isMenuOpened}), 
@@ -22791,16 +22825,18 @@ App = React.createClass({displayName: "App",
 });
 
 routes = (
-    React.createElement(Route, {name: "app", path: "/", handler: App}, 
+    React.createElement(Route, {handler: App}, 
         React.createElement(Route, {name: "login", handler: Login}), 
         React.createElement(Route, {name: "logout", handler: Logout}), 
         React.createElement(Route, {name: "settings", handler: Settings}), 
+        React.createElement(Route, {name: "home", handler: Home}), 
         React.createElement(DefaultRoute, {handler: Login})
     )
 );
 
 module.exports = {
     run: function () {
+        Session.initialize();
         Router.run(routes, function (Handler) {
             React.render(React.createElement(Handler, null), document.body)
         });
@@ -22808,7 +22844,7 @@ module.exports = {
 };
 
 
-},{"../components/Logout":200,"../components/Menu":201,"../components/Settings":202,"../components/land/PageContent":203,"../components/login/Login":205,"react":196,"react-router":27}],199:[function(require,module,exports){
+},{"../components/Home":201,"../components/Logout":202,"../components/MenuContent":203,"../components/Settings":204,"../components/land/PageContent":205,"../components/login/Login":207,"../services/session":209,"react":196,"react-router":27}],200:[function(require,module,exports){
 var React = require('react'),
     Header;
 
@@ -22820,11 +22856,13 @@ Header = React.createClass({displayName: "Header",
 
     render: function () {
         return (
-            React.createElement("div", {id: "#header_container"}, 
-                React.createElement("div", {id: "header_content"}, 
-                    React.createElement("div", {className: "menu-icon"}, 
-                        React.createElement("img", {src: "img/menu-24-64.png", onClick: this._handleMenuClick})
-                    )
+            React.createElement("div", {id: "header-container"}, 
+                React.createElement("div", {id: "header-content"}, 
+                    React.createElement("div", {className: "menu-icon needsclick fl"}, 
+                        React.createElement("img", {src: "img/menu-32.png", onClick: this._handleMenuClick})
+                    ), 
+                    React.createElement("div", {className: "header-title fl"}), 
+                    React.createElement("div", {className: "clear"})
                 )
             )
         )
@@ -22834,47 +22872,132 @@ Header = React.createClass({displayName: "Header",
 module.exports = Header;
 
 
-},{"react":196}],200:[function(require,module,exports){
+},{"react":196}],201:[function(require,module,exports){
+var ReactAuth = require('../common/ReactAuth');
+
+var Home = ReactAuth.createClass({
+
+    render: function() {
+        return (
+            React.createElement("div", null, "Welcome to application")
+        );
+    }
+
+});
+
+module.exports = Home;
+
+
+},{"../common/ReactAuth":197}],202:[function(require,module,exports){
 var React = require('react'),
+    Router = require('react-router'),
+    Authentication = require('../services/authentication'),
+    Session = require('../services/session'),
+    Link = Router.Link,
+    Login = require('../components/login/Login'),
     Logout;
 
 Logout = React.createClass({displayName: "Logout",
+    getInitialState: function () {
+        return {
+            loggedin: true
+        }
+    },
+    componentWillMount: function () {
+        Session.destroy();
+        Authentication.logout(function () {
+            this.setState({loggedin: false});
+        }.bind(this));
+    },
     render: function () {
+        var content = this.state.loggedin ? React.createElement("div", null) : React.createElement(Login, null);
         return (
-            React.createElement("div", null, "Logout")
+            content
         )
     }
 });
 module.exports = Logout;
 
-},{"react":196}],201:[function(require,module,exports){
+},{"../components/login/Login":207,"../services/authentication":208,"../services/session":209,"react":196,"react-router":27}],203:[function(require,module,exports){
 var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link,
-    Menu;
+    MenuContent;
 
-Menu = React.createClass({displayName: "Menu",
+MenuContent = React.createClass({displayName: "MenuContent",
+    getInitialState: function () {
+        return {
+            selectedKey: 'home'
+        }
+    },
+    getMenuItems: function () {
+        if (!this.menuItems) {
+            this.menuItems = [
+                {href: 'home', text: 'Домой', src: 'img/house158.png'},
+                {href: 'settings', text: 'Настройки', src: 'img/settings21.png'},
+                {href: 'logout', text: 'Выйти', src: 'img/exit21.png'}
+            ];
+        }
+        return this.menuItems;
+    },
+
+    _handleMenuItemClick: function (item) {
+        this.setState({
+            selectedKey: item.href
+        });
+        location.hash = item.href;
+        setTimeout(this.props.onItemClick, 50);
+    },
+
     render: function () {
+        var childMenuItems = [],
+            menuItems = this.getMenuItems(),
+            self = this;
+
+        menuItems.forEach(function (item, index) {
+            var classNames = self.state.selectedKey === item.href ? 'menu-row menu-item-selected' : 'menu-row';
+            if (index + 1 < menuItems.length && self.state.selectedKey === menuItems[index + 1].href) {
+                classNames = 'menu-row before-selected';
+            }
+
+            childMenuItems.push(
+                React.createElement("div", {className: classNames, 
+                    onClick: self._handleMenuItemClick.bind(self, item), 
+                    key: item.href}, 
+
+                    React.createElement("div", {className: "menu-item-icon-container fl"}, 
+                        React.createElement("div", {className: "menu-item-icon"}, 
+                            React.createElement("img", {src: item.src})
+                        )
+                    ), 
+
+                    React.createElement("div", {className: "menu-item-text fl"}, 
+                        item.text
+                    ), 
+                    React.createElement("div", {className: "clear"})
+                )
+            )
+        });
+
         return (
             React.createElement("div", {id: "menu"}, 
-                React.createElement("div", null, 
-                    React.createElement(Link, {to: "settings"}, "Настройки")
-                ), 
-                React.createElement("div", null, 
-                    React.createElement(Link, {to: "logout"}, "Выйти")
+                React.createElement("div", {className: "menu-header"}), 
+                React.createElement("div", {className: "menu-list"}, 
+                    childMenuItems
                 )
             )
         )
     }
 });
 
-module.exports = Menu;
+module.exports = MenuContent;
 
-},{"react":196,"react-router":27}],202:[function(require,module,exports){
-var React = require('react'),
+
+},{"react":196,"react-router":27}],204:[function(require,module,exports){
+var ReactAuth = require('../common/ReactAuth'),
     Settings;
 
-Settings = React.createClass({displayName: "Settings",
+Settings = ReactAuth.createClass({
     render: function () {
         return (
             React.createElement("div", null, "Настройки")
@@ -22884,11 +23007,12 @@ Settings = React.createClass({displayName: "Settings",
 
 module.exports = Settings;
 
-},{"react":196}],203:[function(require,module,exports){
+},{"../common/ReactAuth":197}],205:[function(require,module,exports){
 var React = require('react'),
     Router = require('react-router'),
     RouteHandler = Router.RouteHandler,
     Header = require('../Header'),
+    Session = require('../../services/session'),
     PageContent;
 
 PageContent = React.createClass({displayName: "PageContent",
@@ -22916,7 +23040,7 @@ PageContent = React.createClass({displayName: "PageContent",
         }
     },
 
-    componentDidUpdate: function() {
+    componentDidUpdate: function () {
         if (this.props.isMenuOpened) {
             requestAnimationFrame(this.closeMenu);
         } else {
@@ -22925,13 +23049,14 @@ PageContent = React.createClass({displayName: "PageContent",
     },
 
     render: function () {
-        var divStyle = {left: this.state.position};
+        var divStyle = {left: this.state.position},
+            header = Session.isAuthenticated() ?
+                React.createElement(Header, {onMenuClick: this.props.onMenuClick}) : '';
 
         return (
             React.createElement("div", {id: "content", style: divStyle}, 
-                React.createElement(Header, {
-                    onMenuClick: this.props.onMenuClick}), 
-                React.createElement("div", {id: "page_host"}, 
+                header, 
+                React.createElement("div", {id: "page-host"}, 
                     React.createElement(RouteHandler, null)
                 )
             )
@@ -22942,7 +23067,7 @@ PageContent = React.createClass({displayName: "PageContent",
 module.exports = PageContent;
 
 
-},{"../Header":199,"react":196,"react-router":27}],204:[function(require,module,exports){
+},{"../../services/session":209,"../Header":200,"react":196,"react-router":27}],206:[function(require,module,exports){
 var React = require('react'),
     AuthService = require('../../services/authentication'),
     Form;
@@ -22953,8 +23078,8 @@ Form = React.createClass({displayName: "Form",
                 username: React.findDOMNode(this.refs.username).value.trim(),
                 password: React.findDOMNode(this.refs.password).value.trim()
             },
-            function (result) {
-                alert('Authentication is successful');
+            function () {
+                location.hash = 'home';
             },
             function (error) {
 
@@ -22983,7 +23108,8 @@ Form = React.createClass({displayName: "Form",
 });
 module.exports = Form;
 
-},{"../../services/authentication":206,"react":196}],205:[function(require,module,exports){
+
+},{"../../services/authentication":208,"react":196}],207:[function(require,module,exports){
 var Form = require('./Form');
 
 var Login = React.createClass({displayName: "Login",
@@ -23001,7 +23127,7 @@ var Login = React.createClass({displayName: "Login",
 
 module.exports = Login;
 
-},{"./Form":204}],206:[function(require,module,exports){
+},{"./Form":206}],208:[function(require,module,exports){
 var ajax = require('./../common/ajax'),
     Session = require('./session');
 
@@ -23046,7 +23172,7 @@ var AuthService = {
 module.exports = AuthService;
 
 
-},{"./../common/ajax":197,"./session":207}],207:[function(require,module,exports){
+},{"./../common/ajax":198,"./session":209}],209:[function(require,module,exports){
 var session = {},
     cookieAuthStatus = 'auth_status',
     cookieUserName = 'username',
@@ -23074,7 +23200,7 @@ Session = {
         }
     },
     isAuthenticated: function() {
-        return session.authenticated;
+        return !!session.authenticated;
     },
     getUsername: function() {
         return session.username;

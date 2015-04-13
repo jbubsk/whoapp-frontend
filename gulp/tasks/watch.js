@@ -18,7 +18,7 @@ function reportChange(event){
  */
 
 gulp.task('watch', ['serve'], function() {
-  gulp.watch(paths.src.js, ['build-js-sources']).on('change', reportChange);
+  gulp.watch(paths.src.js, ['build-jsx']).on('change', reportChange);
   gulp.watch(paths.src.scss, ['build-styles', browserSync.reload]).on('change', reportChange);
   gulp.watch(paths.src.html, browserSync.reload).on('change', reportChange);
   gulp.watch(paths.dist + '**/*.*', browserSync.reload).on('change', reportChange);

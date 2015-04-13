@@ -2,7 +2,6 @@
   "name": "whoapp",
   "version": "0.0.1",
   "description": "whoapp: application for `who & where`",
-  "main": "dist/commonjs/index.js",
   "devDependencies": {
     "body-parser": "^1.12.2",
     "browser-sync": "^1.8.1",

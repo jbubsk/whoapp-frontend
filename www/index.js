@@ -19,6 +19,7 @@
 var app = {
     // Application Constructor
     initialize: function () {
+        FastClick.attach(document.body);
         whoapp.run();
         this.bindEvents();
     },
@@ -34,6 +35,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
+        FastClick.attach(document.body);
         whoapp.run();
     },
     // Update DOM on a Received Event

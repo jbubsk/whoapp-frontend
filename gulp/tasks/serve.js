@@ -52,7 +52,7 @@ gulp.task('serve', ['build'], function (done) {
 
 gulp.task('phonegap-serve', ['build'], function (done) {
     sh.exec('phonegap serve', {async: true});
-    gulp.watch(paths.src.js, ['build-js-sources']);
+    gulp.watch(paths.src.js, ['build-jsx']);
     gulp.watch(paths.src.scss, ['build-styles']);
     done();
 });

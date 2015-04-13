@@ -1,7 +1,8 @@
 var React = require('react'),
     Router = require('react-router'),
     RouteHandler = Router.RouteHandler,
-    Header = require('../Header'),
+    Header = require('Header'),
+    Session = require('../services/session'),
     PageContent;
 
 PageContent = React.createClass({
@@ -29,7 +30,7 @@ PageContent = React.createClass({
         }
     },
 
-    componentDidUpdate: function() {
+    componentDidUpdate: function () {
         if (this.props.isMenuOpened) {
             requestAnimationFrame(this.closeMenu);
         } else {
@@ -38,13 +39,14 @@ PageContent = React.createClass({
     },
 
     render: function () {
-        var divStyle = {left: this.state.position};
+        var divStyle = {left: this.state.position},
+            header = Session.isAuthenticated() ?
+                <Header onMenuClick={this.props.onMenuClick}/> : '';
 
         return (
             <div id="content" style={divStyle}>
-                <Header
-                    onMenuClick={this.props.onMenuClick}/>
-                <div id="page_host">
+                {header}
+                <div id="page-host">
                     <RouteHandler/>
                 </div>
             </div>

@@ -5,6 +5,8 @@ module.exports = {
     src: {
         app: appRoot + 'js/application.js',
         js: appRoot + '**/*.js',
+        buildjs: appRoot + 'buildjs/application.js',
+        buildjs_exclude: appRoot + '!buildjs/.module-cache/**/*.js',
         html: ['./index.html'],
         scss: appRoot + 'styles/**/*.scss',
         style: 'styles/',

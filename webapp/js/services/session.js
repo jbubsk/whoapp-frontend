@@ -25,7 +25,7 @@ Session = {
         }
     },
     isAuthenticated: function() {
-        return session.authenticated;
+        return !!session.authenticated;
     },
     getUsername: function() {
         return session.username;
