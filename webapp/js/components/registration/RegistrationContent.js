@@ -1,12 +1,14 @@
-var Form = require('./Form');
+var React = require('react'),
+    NavBar = require('../../components/NavBar'),
+    Form = require('./Form');
 
 var Login = React.createClass({
     render: function () {
         return (
             <div className="padding">
-                <div className="page-title">
-                    <span>Привет</span>
-                </div>
+                <NavBar
+                    text="Зарегистрироваться"
+                    action="register"/>
                 <Form/>
             </div>
         );

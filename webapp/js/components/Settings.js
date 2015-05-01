@@ -1,4 +1,5 @@
-var ReactAuth = require('../common/ReactAuth'),
+var React = require('react'),
+    ReactAuth = require('../common/ReactAuth'),
     Settings;
 
 Settings = ReactAuth.createClass({

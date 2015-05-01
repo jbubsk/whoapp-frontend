@@ -9,16 +9,15 @@ var gulp = require('gulp'),
 
 /**** JS build ****/
 
-gulp.task('build-js-libraries', function() {
+gulp.task('build-js-libraries', function () {
     return gulp.src([
-            paths.lib_bower + 'jquery/dist/jquery.min.js',
-            paths.lib_node + 'react/dist/react.js'
-        ])
+        paths.lib_bower + 'jquery/dist/jquery.min.js'
+    ])
         .pipe(concat(paths.dest.lib))
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('build-jsx', function() {
+gulp.task('build-jsx', function () {
     return browserify(paths.src.app)
         .transform(reactify)
         .bundle()
@@ -26,7 +25,7 @@ gulp.task('build-jsx', function() {
         .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('build-js-pure', function() {
+gulp.task('build-js-pure', function () {
     return browserify(paths.src.buildjs)
         .bundle()
         .pipe(source(paths.dest.app))
@@ -35,16 +34,16 @@ gulp.task('build-js-pure', function() {
 
 /**** Styles build ****/
 
-gulp.task('build-styles-libraries', function(done) {
+gulp.task('build-styles-libraries', function (done) {
     gulp.src([paths.lib_bower + 'bootstrap/dist/css/bootstrap.min.css',
-            paths.lib_node + 'bootstrap/dist/css/bootstrap-theme.min.css'
-        ])
+        paths.lib_node + 'bootstrap/dist/css/bootstrap-theme.min.css'
+    ])
         .pipe(concat(paths.dest.lib_style))
         .pipe(gulp.dest(paths.dist))
         .on('end', done);
 });
 
-gulp.task('build-styles', function(done) {
+gulp.task('build-styles', function (done) {
     gulp.src(paths.src.scss)
         .pipe(sass())
         .pipe(gulp.dest(paths.dist))
@@ -53,7 +52,7 @@ gulp.task('build-styles', function(done) {
 
 /**** IMG build ****/
 
-gulp.task('build-img', function(done) {
+gulp.task('build-img', function (done) {
     gulp.src([paths.src.img])
         .pipe(gulp.dest(paths.dist_img))
         .on('end', done);
@@ -63,14 +62,15 @@ gulp.task('build-img', function(done) {
 // in ./clean.js), then runs the build-system
 // https://www.npmjs.com/package/gulp-run-sequence
 
-gulp.task('build', function(callback) {
+gulp.task('build', function (callback) {
     return runSequence(
-        'clean-dev', ['build-jsx', 'build-js-libraries', 'build-styles-libraries', 'build-styles', 'build-img'],
+        'clean-dev',
+        ['build-jsx', 'build-js-libraries', 'build-styles-libraries', 'build-styles', 'build-img'],
         callback
     );
 });
 
-gulp.task('re-build', function(callback) {
+gulp.task('re-build', function (callback) {
     return runSequence(
         'clean-dev', ['build-jsx', 'build-styles'],
         callback

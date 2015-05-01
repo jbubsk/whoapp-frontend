@@ -1,12 +1,14 @@
 $device-width: 320px;
-$header-height: 65px;
+$header-height: 60px;
 $menu-width: 270px;
+$header-background: rgba(42, 168, 47, 0.83);
+
 @media screen and (min-device-width: 320px) {
   #menu {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(124, 121, 144, 1);
+    background: #B5B5B5;
   }
   #content {
     position: fixed;
@@ -17,14 +19,13 @@ $menu-width: 270px;
   }
 }
 
-/********* HEADER *********/
 #container {
   background: rgba(166, 186, 193, 0.93);
 }
 
+/*************************** HEADER ***************************/
 #header-container {
-  background: rgba(42, 168, 47, 0.83);
-  border-bottom: 1px solid rgba(37, 127, 18, 0.93);
+  background: $header-background;
   height: $header-height;
   width: 100%;
 }
@@ -34,7 +35,7 @@ $menu-width: 270px;
 }
 
 div.menu-icon {
-  margin: 25px 10px;
+  margin: 25px 10px 0;
   width: 32px;
   height: 32px;
   z-index: 100;
@@ -48,7 +49,29 @@ div.header-title {
   line-height: 65px;
 }
 
-/********* MENU *********/
+.loader-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgb(242, 242, 242);
+  opacity: 0.5;
+  text-align: center;
+  z-index: 150;
+
+  img {
+    margin-top: 10px;
+  }
+}
+
+.loader {
+  position: relative;
+  height: 100px;
+  top: 150px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+/*************************** MENU ***************************/
 .menu-header {
   height: $header-height;
 }
@@ -74,15 +97,15 @@ div.header-title {
   }
 }
 
-.menu-item-selected{
-  background: rgb(85, 77, 113);
+.menu-item-selected {
+  background: $header-background;
   .menu-item-text {
     border-bottom: none;
   }
 }
 
 .before-selected .menu-item-text {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .menu-item-text {
@@ -98,7 +121,7 @@ div.header-title {
   }
 }
 
-/********* CONTENT *********/
+/*************************** CONTENT ***************************/
 .page-title {
   margin-left: 35px;
   padding-top: 20px;
@@ -107,8 +130,13 @@ div.header-title {
   height: 50px;
 }
 
-#page-host {
+.page-host {
   width: 100%;
+  height: 100%;
+}
+
+.page-wrapper {
+  margin: 5px 0;
 }
 
 .clear {
@@ -123,19 +151,69 @@ div.header-title {
   float: right;
 }
 
-.error {
-  /*border-bottom: 1px solid red;*/
+.center-align-block {
+  position: relative;
+  text-align: center;
+  width: 240px;
+  left: 40px;
+  button {
+    font-size: 16px !important;
+    height: 45px;
+  }
 }
 
+.left-align-block {
+  position: relative;
+  left: 30px;
+  width: 100%;
+}
+
+.navigation-block {
+
+}
+
+.header-navig-title {
+  margin: 30px 20px;
+  color: #000000;
+  font-weight: 200;
+  font-size: 18px;
+}
+
+.row-block {
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(216, 213, 213);
+
+  .title {
+    font-weight: 200;
+  }
+}
+
+/*************************** Land page ******************************/
+
+.land {
+  padding-top: 200px;
+  height: 100%;
+  background: white;
+
+  .center-align-block {
+    margin-bottom: 20px;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+/*************************** Login page ******************************/
 .main-error {
   height: 50px;
-  margin-left: 35px;
+  text-align: center;
   color: red;
   font-weight: bold;
 }
 
 .login-form {
-  margin-top: 60px;
+  margin-top: 70px;
   width: 100%;
   input {
     width: 220px;
@@ -145,24 +223,39 @@ div.header-title {
   }
 }
 
-.form {
-  padding-top: 30px;
-}
-
-.button-block {
-  position: relative;
-  text-align: center;
-  width: 240px;
-  left: 40px;
-  button {
-    font-size: 16px !important;
-  }
-}
-
 .login-btn {
   margin-top: 20px;
 }
 
 .bottom {
   margin-top: 100px;
+}
+
+/*************************** Home page ******************************/
+
+.home {
+  button {
+    margin: 10px 0;
+    width: 100%;
+  }
+}
+
+.todo-dropdown {
+  margin: 20px 0;
+}
+
+/*************************** Location page ******************************/
+
+.location {
+  height: 100%;
+  width: 100%;
+
+  .title {
+    font-weight: 200;
+  }
+}
+
+.people-list {
+  margin: 5px 0;
+  width: 100%;
 }

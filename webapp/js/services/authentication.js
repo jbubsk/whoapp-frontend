@@ -36,6 +36,24 @@ var AuthService = {
                 console.error("Response text: " + error.responseText + "Status: " + error.status + "\nStatus text: " + error.statusText);
             }
         });
+    },
+    
+    register: function (model, successCallback, errorCallback) {
+        ajax.send({
+            url: '/register',
+            method: 'post',
+            data: model,
+            publicApi: true,
+            success: function() {
+                Session.destroy();
+                if (successCallback) {
+                    successCallback();
+                }
+            },
+            error: function(error) {
+                console.error("Response text: " + error.responseText + "Status: " + error.status + "\nStatus text: " + error.statusText);
+            }
+        });
     }
 };
 

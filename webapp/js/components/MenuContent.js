@@ -1,9 +1,9 @@
 var React = require('react'),
-    Router = require('react-router'),
-    Link = Router.Link,
+    Navigation = require('react-router').Navigation,
     MenuContent;
 
 MenuContent = React.createClass({
+    mixins: [Navigation],
     getInitialState: function () {
         return {
             selectedKey: 'home'
@@ -24,7 +24,7 @@ MenuContent = React.createClass({
         this.setState({
             selectedKey: item.href
         });
-        location.hash = item.href;
+        this.context.router.transitionTo(item.href);
         setTimeout(this.props.onItemClick, 50);
     },
 

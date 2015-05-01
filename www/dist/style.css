@@ -3,7 +3,7 @@
     position: fixed;
     width: 100%;
     height: 100%;
-    background: #7c7990; }
+    background: #B5B5B5; }
   #content {
     position: fixed;
     width: 100%;
@@ -11,21 +11,20 @@
     background: white;
     border-left: 1px solid #000000; } }
 
-/********* HEADER *********/
 #container {
   background: rgba(166, 186, 193, 0.93); }
 
+/*************************** HEADER ***************************/
 #header-container {
   background: rgba(42, 168, 47, 0.83);
-  border-bottom: 1px solid rgba(37, 127, 18, 0.93);
-  height: 65px;
+  height: 60px;
   width: 100%; }
 
 #header-content {
   color: white; }
 
 div.menu-icon {
-  margin: 25px 10px;
+  margin: 25px 10px 0;
   width: 32px;
   height: 32px;
   z-index: 100; }
@@ -36,9 +35,27 @@ div.menu-icon {
 div.header-title {
   line-height: 65px; }
 
-/********* MENU *********/
+.loader-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #f2f2f2;
+  opacity: 0.5;
+  text-align: center;
+  z-index: 150; }
+  .loader-overlay img {
+    margin-top: 10px; }
+
+.loader {
+  position: relative;
+  height: 100px;
+  top: 150px;
+  margin: 20px;
+  border-radius: 10px; }
+
+/*************************** MENU ***************************/
 .menu-header {
-  height: 65px; }
+  height: 60px; }
 
 .menu-row {
   width: 100%;
@@ -57,7 +74,7 @@ div.header-title {
       height: 24px; }
 
 .menu-item-selected {
-  background: #554d71; }
+  background: rgba(42, 168, 47, 0.83); }
   .menu-item-selected .menu-item-text {
     border-bottom: none; }
 
@@ -75,7 +92,7 @@ div.header-title {
     margin-left: 10px;
     text-decoration: none; }
 
-/********* CONTENT *********/
+/*************************** CONTENT ***************************/
 .page-title {
   margin-left: 35px;
   padding-top: 20px;
@@ -83,8 +100,12 @@ div.header-title {
   font-weight: 200;
   height: 50px; }
 
-#page-host {
-  width: 100%; }
+.page-host {
+  width: 100%;
+  height: 100%; }
+
+.page-wrapper {
+  margin: 5px 0; }
 
 .clear {
   clear: both; }
@@ -95,14 +116,51 @@ div.header-title {
 .fr {
   float: right; }
 
+.center-align-block {
+  position: relative;
+  text-align: center;
+  width: 240px;
+  left: 40px; }
+  .center-align-block button {
+    font-size: 16px !important;
+    height: 45px; }
+
+.left-align-block {
+  position: relative;
+  left: 30px;
+  width: 100%; }
+
+.header-navig-title {
+  margin: 30px 20px;
+  color: #000000;
+  font-weight: 200;
+  font-size: 18px; }
+
+.row-block {
+  padding: 10px 0;
+  border-bottom: 1px solid #d8d5d5; }
+  .row-block .title {
+    font-weight: 200; }
+
+/*************************** Land page ******************************/
+.land {
+  padding-top: 200px;
+  height: 100%;
+  background: white; }
+  .land .center-align-block {
+    margin-bottom: 20px; }
+    .land .center-align-block button {
+      width: 100%; }
+
+/*************************** Login page ******************************/
 .main-error {
   height: 50px;
-  margin-left: 35px;
+  text-align: center;
   color: red;
   font-weight: bold; }
 
 .login-form {
-  margin-top: 60px;
+  margin-top: 70px;
   width: 100%; }
   .login-form input {
     width: 220px;
@@ -110,19 +168,27 @@ div.header-title {
     margin-top: 25px;
     margin-left: 50px; }
 
-.form {
-  padding-top: 30px; }
-
-.button-block {
-  position: relative;
-  text-align: center;
-  width: 240px;
-  left: 40px; }
-  .button-block button {
-    font-size: 16px !important; }
-
 .login-btn {
   margin-top: 20px; }
 
 .bottom {
   margin-top: 100px; }
+
+/*************************** Home page ******************************/
+.home button {
+  margin: 10px 0;
+  width: 100%; }
+
+.todo-dropdown {
+  margin: 20px 0; }
+
+/*************************** Location page ******************************/
+.location {
+  height: 100%;
+  width: 100%; }
+  .location .title {
+    font-weight: 200; }
+
+.people-list {
+  margin: 5px 0;
+  width: 100%; }

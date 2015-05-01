@@ -2,8 +2,7 @@ var React = require('react'),
     Router = require('react-router'),
     Authentication = require('../services/authentication'),
     Session = require('../services/session'),
-    Link = Router.Link,
-    Login = require('../components/login/Login'),
+    Login = require('../components/login/LoginContent'),
     Logout;
 
 Logout = React.createClass({

@@ -2,12 +2,13 @@
   "name": "whoapp",
   "version": "0.0.1",
   "description": "whoapp: application for `who & where`",
-  "devDependencies": {
+  "dependencies": {
     "body-parser": "^1.12.2",
     "browser-sync": "^1.8.1",
     "browserify": "^9.0.3",
     "conventional-changelog": "0.0.11",
     "del": "^1.1.0",
+    "events": "^1.0.2",
     "fs": "0.0.2",
     "gulp": "^3.8.10",
     "gulp-babel": "^4.0.0",
@@ -17,14 +18,19 @@
     "gulp-jshint": "^1.9.0",
     "gulp-plumber": "^0.6.6",
     "gulp-sass": "^0.7.1",
-    "react": "^0.13.1",
-    "react-router": "^0.13.2",
+    "object-assign": "^2.0.0",
+    "qs": "^2.4.1",
+    "react": "^0.13.2",
+    "react-router": "^0.13.3",
     "reactify": "^1.1.0",
     "require-dir": "^0.1.0",
     "run-sequence": "^1.0.2",
     "shelljs": "^0.4.0",
     "vinyl-paths": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "scripts": {
+    "dev": "npm install && bower install && gulp phonegap-serve"
   },
   "cordovaPlugins": [
     "org.apache.cordova.geolocation"

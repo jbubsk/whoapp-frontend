@@ -9,12 +9,16 @@ var React = require('react'),
 
 /* app modules */
 
-    Login = require('../components/login/Login'),
+    Login = require('../components/login/LoginContent'),
+    Land = require('../components/Land'),
+    Registration = require('../components/registration/RegistrationContent'),
     Logout = require('../components/Logout'),
-    Home = require('../components/Home'),
+    Location = require('../components/location/LocationContent'),
+    Home = require('../components/home/HomeContent'),
     Settings = require('../components/Settings'),
     MenuContent = require('../components/MenuContent'),
-    PageContent = require('../components/PageContent');
+    PageContent = require('../components/PageContent'),
+    Loader = require('../components/Loader');
 
 App = React.createClass({
     getInitialState: function () {
@@ -39,6 +43,7 @@ App = React.createClass({
                 <PageContent
                     onMenuClick={this._onMenuClick}
                     isMenuOpened={this.state.isMenuOpened}/>
+                <Loader/>
                 <div className="clear"/>
             </div>
         )
@@ -48,10 +53,12 @@ App = React.createClass({
 routes = (
     <Route handler={App}>
         <Route name="login" handler={Login}/>
+        <Route name="registration" handler={Registration}/>
         <Route name="logout" handler={Logout}/>
         <Route name="settings" handler={Settings}/>
         <Route name="home" handler={Home}/>
-        <DefaultRoute handler={Login}/>
+        <Route name="location" handler={Location}/>
+        <DefaultRoute handler={Land}/>
     </Route>
 );
 

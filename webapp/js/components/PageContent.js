@@ -1,7 +1,7 @@
 var React = require('react'),
     Router = require('react-router'),
     RouteHandler = Router.RouteHandler,
-    Header = require('Header'),
+    Header = require('../components/Header'),
     Session = require('../services/session'),
     PageContent;
 
@@ -24,7 +24,7 @@ PageContent = React.createClass({
     closeMenu: function () {
         var position;
 
-        if (this.state.position >= 0) {
+        if (this.state.position > 0) {
             position = Math.max(0, this.state.position - 30);
             this.setState({position: position});
         }
@@ -46,7 +46,7 @@ PageContent = React.createClass({
         return (
             <div id="content" style={divStyle}>
                 {header}
-                <div id="page-host">
+                <div className="page-host">
                     <RouteHandler/>
                 </div>
             </div>
