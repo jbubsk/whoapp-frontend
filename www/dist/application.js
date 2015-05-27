@@ -23216,11 +23216,12 @@ module.exports = ReactAuth;
 var loaderActions = require('../actions/loaderActions');
 var ajax = {
 
-    public_api: '/api',
-    private_api: '/api/private',
+    public_api    : '/auth',
+    private_api   : '/api',
     services_host: "http://whoappbackend-jbubsk.rhcloud.com",
+    //services_host : "http://172.16.16.114:8085",
 
-    send: function (params) {
+    send : function (params) {
         var url = this.services_host,
             _loaderState = params.LoaderActions !== false;
 
@@ -23232,20 +23233,20 @@ var ajax = {
 
         loaderActions.toggle(_loaderState);
         $.ajax({
-            url: url,
-            method: params.method,
-            data: params.data,
-            xhrFields: {
-                withCredentials: true
+            url       : url,
+            method    : params.method,
+            data      : params.data,
+            xhrFields : {
+                withCredentials : true
             },
-            success: function (data) {
+            success   : function (data) {
                 if (params.success) {
                     params.success(data);
                 }
                 loaderActions.toggle(!_loaderState);
             },
-            error: function (error) {
-                console.error("Response text: " + error.responseText + "Status: " + error.status + "\nStatus text: " + error.statusText);
+            error     : function (error) {
+                console.error({message : 'ajax.send(): ', error : error});
                 if (params.error) {
                     params.error(error);
                 }
@@ -23701,27 +23702,10 @@ var Home = ReactAuth.createClass({
     render: function () {
         return (
             React.createElement("div", {className: "home"}, 
-                React.createElement("div", {className: "row-block"}, 
-                    React.createElement("div", {className: "center-align-block"}, 
-                        React.createElement("div", {className: "title"}, 
-                            React.createElement("span", null, "Что желаете?")
-                        ), 
-                        React.createElement(TodoDropdown, null)
-                    )
-                ), 
-
-                React.createElement("div", {className: "row-block"}, 
-                    React.createElement("div", {className: "center-align-block"}, 
-                        React.createElement("div", {className: "title"}, 
-                            React.createElement("span", null, "С кем?")
-                        ), 
-                        React.createElement(PeopleDropdown, null)
-                    )
-                ), 
-                React.createElement("div", {className: "center-align-block"}, 
-                    React.createElement("button", {
-                        className: "btn btn-success", 
-                        onClick: this._handleClickSearch}, "Найти")
+                React.createElement(TodoDropdown, null), 
+                React.createElement("div", {className: "home-wrapper"}, 
+                    React.createElement("a", {className: "tab"}, "С кем"), 
+                    React.createElement("a", {className: "tab"}, "Куда")
                 )
             )
         );
@@ -23806,7 +23790,7 @@ TodoDropdown = React.createClass({displayName: "TodoDropdown",
             )
         });
         return (
-            React.createElement("div", {className: "dropdown"}, 
+            React.createElement("div", {className: "todo-dropdown"}, 
                 React.createElement("select", {
                     className: "form-control", 
                     onChange: this._handleSelect, 
@@ -24125,7 +24109,7 @@ var AuthService = {
     
     register: function (model, successCallback, errorCallback) {
         ajax.send({
-            url: '/register',
+            url: '/signup',
             method: 'post',
             data: model,
             publicApi: true,

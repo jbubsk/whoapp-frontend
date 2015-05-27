@@ -14,27 +14,10 @@ var Home = ReactAuth.createClass({
     render: function () {
         return (
             <div className="home">
-                <div className="row-block">
-                    <div className="center-align-block">
-                        <div className="title">
-                            <span>Что желаете&#63;</span>
-                        </div>
-                        <TodoDropdown/>
-                    </div>
-                </div>
-
-                <div className="row-block">
-                    <div className="center-align-block">
-                        <div className="title">
-                            <span>С кем&#63;</span>
-                        </div>
-                        <PeopleDropdown/>
-                    </div>
-                </div>
-                <div className="center-align-block">
-                    <button
-                        className="btn btn-success"
-                        onClick={this._handleClickSearch}>Найти</button>
+                <TodoDropdown/>
+                <div className="home-wrapper">
+                    <a className="tab">С кем</a>
+                    <a className="tab">Куда</a>
                 </div>
             </div>
         );

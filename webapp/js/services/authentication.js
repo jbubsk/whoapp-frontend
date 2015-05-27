@@ -40,7 +40,7 @@ var AuthService = {
     
     register: function (model, successCallback, errorCallback) {
         ajax.send({
-            url: '/register',
+            url: '/signup',
             method: 'post',
             data: model,
             publicApi: true,

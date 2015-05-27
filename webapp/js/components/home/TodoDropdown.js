@@ -27,7 +27,7 @@ TodoDropdown = React.createClass({
             )
         });
         return (
-            <div className="dropdown">
+            <div className="todo-dropdown">
                 <select
                     className="form-control"
                     onChange={this._handleSelect}
